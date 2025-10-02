@@ -1,0 +1,151 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Layout from '../layouts/Layout.astro';
+
+const currentLocale = Astro.currentLocale || 'id';
+
+const content = {
+	title: 'Tentang Emverst',
+	subtitle: 'Partner Anda dalam Hidup Sehat',
+	mission: 'Misi Kami',
+	missionText: 'Di Emverst, kami percaya bahwa kesejahteraan sejati berasal dari keseimbangan tiga pilar kesehatan yang esensial: pola makan yang mindful, gerakan teratur, dan istirahat berkualitas. Misi kami adalah membimbing Anda dalam perjalanan transformatif menuju gaya hidup yang lebih sehat dan seimbang.',
+	vision: 'Visi Kami',
+	visionText: 'Kami membayangkan dunia di mana setiap orang memiliki akses terhadap pengetahuan dan alat yang diperlukan untuk menjalani hidup tersehat mereka. Melalui konten berbasis bukti dan panduan praktis, kami bertujuan untuk membuat kesehatan mudah diakses, dapat dicapai, dan menyenangkan bagi semua.',
+	values: 'Nilai-Nilai Kami',
+	valuesList: [
+		{
+			title: 'Pendekatan Holistik',
+			description: 'Kami percaya dalam menangani kesehatan dari segala sudut - nutrisi, gerakan, dan istirahat bekerja sama untuk kesehatan optimal.'
+		},
+		{
+			title: 'Berbasis Sains',
+			description: 'Semua konten kami didasarkan pada penelitian ilmiah dan praktik berbasis bukti untuk panduan yang dapat diandalkan.'
+		},
+		{
+			title: 'Aksesibilitas',
+			description: 'Kami membuat hidup sehat dapat diakses oleh semua orang, terlepas dari latar belakang, tingkat kebugaran, atau pengalaman.'
+		},
+		{
+			title: 'Keberlanjutan',
+			description: 'Kami mempromosikan perubahan gaya hidup berkelanjutan yang dapat Anda pertahankan jangka panjang, bukan solusi cepat atau tindakan ekstrem.'
+		}
+	],
+	story: 'Cerita Kami',
+	storyText: 'Emverst lahir dari pemahaman bahwa kesehatan bukan tentang kesempurnaan, tetapi tentang kemajuan. Tim kami yang terdiri dari penggemar kesehatan, ahli gizi, dan pakar kesehatan berkumpul untuk menciptakan platform yang menyederhanakan perjalanan menuju kesehatan yang lebih baik. Kami memahami tantangan kehidupan modern dan bertujuan memberikan solusi praktis dan dapat dicapai yang sesuai dengan rutinitas harian Anda.',
+	team: 'Komitmen Kami',
+	teamText: 'Kami berkomitmen untuk terus memperbaiki dan memperluas konten kami untuk melayani Anda dengan lebih baik. Baik Anda baru memulai perjalanan kesehatan atau ingin meningkatkan rutinitas saat ini, Emverst hadir untuk mendukung Anda di setiap langkah.',
+	contact: 'Hubungi Kami',
+	contactText: 'Punya pertanyaan, saran, atau hanya ingin berbagi perjalanan kesehatan Anda dengan kami? Kami senang mendengar dari Anda!',
+	backToHome: 'Kembali ke Beranda'
+};
+---
+
+<Layout title={content.title} lang={currentLocale}>
+	<div class="min-h-screen bg-gray-50">
+		<!-- Header Section -->
+		<section class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-16">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="text-center">
+					<h1 class="text-4xl md:text-5xl font-bold mb-4">
+						{content.title}
+					</h1>
+					<p class="text-xl md:text-2xl text-orange-100 max-w-3xl mx-auto">
+						{content.subtitle}
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Content Sections -->
+		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+			<!-- Mission -->
+			<section class="mb-16">
+				<div class="bg-white rounded-lg shadow-lg p-8">
+					<h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+						<span class="text-3xl mr-3">🎯</span>
+						{content.mission}
+					</h2>
+					<p class="text-gray-700 text-lg leading-relaxed">
+						{content.missionText}
+					</p>
+				</div>
+			</section>
+
+			<!-- Vision -->
+			<section class="mb-16">
+				<div class="bg-white rounded-lg shadow-lg p-8">
+					<h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+						<span class="text-3xl mr-3">👁️</span>
+						{content.vision}
+					</h2>
+					<p class="text-gray-700 text-lg leading-relaxed">
+						{content.visionText}
+					</p>
+				</div>
+			</section>
+
+			<!-- Values -->
+			<section class="mb-16">
+				<div class="bg-white rounded-lg shadow-lg p-8">
+					<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+						<span class="text-3xl mr-3">⭐</span>
+						{content.values}
+					</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+						{content.valuesList.map((value) => (
+							<div class="border-l-4 border-orange-500 pl-4">
+								<h3 class="font-semibold text-gray-900 mb-2">{value.title}</h3>
+								<p class="text-gray-700">{value.description}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Story -->
+			<section class="mb-16">
+				<div class="bg-white rounded-lg shadow-lg p-8">
+					<h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+						<span class="text-3xl mr-3">📖</span>
+						{content.story}
+					</h2>
+					<p class="text-gray-700 text-lg leading-relaxed">
+						{content.storyText}
+					</p>
+				</div>
+			</section>
+
+			<!-- Team Commitment -->
+			<section class="mb-16">
+				<div class="bg-white rounded-lg shadow-lg p-8">
+					<h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+						<span class="text-3xl mr-3">🤝</span>
+						{content.team}
+					</h2>
+					<p class="text-gray-700 text-lg leading-relaxed">
+						{content.teamText}
+					</p>
+				</div>
+			</section>
+
+			<!-- Contact -->
+			<section>
+				<div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-8 text-center">
+					<h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center justify-center">
+						<span class="text-3xl mr-3">💌</span>
+						{content.contact}
+					</h2>
+					<p class="text-gray-700 text-lg mb-6">
+						{content.contactText}
+					</p>
+					<a 
+						href={getRelativeLocaleUrl(currentLocale, '/')}
+						class="inline-block bg-orange-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-700 transition-colors duration-200"
+					>
+						{content.backToHome}
+					</a>
+				</div>
+			</section>
+		</div>
+	</div>
+</Layout>

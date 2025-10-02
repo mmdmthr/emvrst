@@ -1,48 +1,49 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 
-const currentLocale = Astro.currentLocale || 'id';
+const currentLocale = Astro.currentLocale || 'en';
 
 const content = {
-	title: 'Selamat Datang di Emverst',
-	subtitle: 'Panduan hidup sehat melalui pola makan, gerakan, dan istirahat yang mindful',
-	description: 'Temukan resep, latihan, dan tips kesehatan untuk mengubah gaya hidup Anda.',
+	title: 'Welcome to Emverst',
+	subtitle: 'Your guide to healthy living through mindful eating, movement, and rest',
+	description: 'Discover recipes, exercises, and wellness tips to transform your lifestyle.',
 	sections: [
 		{
-			title: 'Makan',
-			description: 'Temukan resep sehat dan lezat',
-			icon: '🍽️',
-			href: getRelativeLocaleUrl('id', 'eat'),
-			color: 'bg-green-500 hover:bg-green-600'
-		},
+            title: 'Eat',
+            description: 'Discover healthy and delicious recipes',
+            icon: '🍽️',
+            href: getRelativeLocaleUrl('en', 'eat'),
+            color: 'bg-green-500 hover:bg-green-600'
+        },
 		{
-			title: 'Bergerak',
-			description: 'Tetap aktif dengan latihan terpandu',
-			icon: '🏃‍♀️',
-			href: getRelativeLocaleUrl('id', 'move'),
-			color: 'bg-blue-500 hover:bg-blue-600'
-		},
+            title: 'Move',
+            description: 'Stay active with guided exercises',
+            icon: '🏃‍♀️',
+            href: getRelativeLocaleUrl('en', 'move'),
+            color: 'bg-blue-500 hover:bg-blue-600'
+        },
 		{
-			title: 'Istirahat',
-			description: 'Pelajari teknik relaksasi dan pemulihan',
-			icon: '🧘‍♀️',
-			href: getRelativeLocaleUrl('id', 'rest'),
-			color: 'bg-purple-500 hover:bg-purple-600'
-		},
+            title: 'Rest',
+            description: 'Learn relaxation and recovery techniques',
+            icon: '🧘‍♀️',
+            href: getRelativeLocaleUrl('en', 'rest'),
+            color: 'bg-purple-500 hover:bg-purple-600'
+        },
 		{
-			title: 'Tentang',
-			description: 'Pelajari lebih lanjut tentang misi kami',
-			icon: '💡',
-			href: getRelativeLocaleUrl('id', 'about'),
-			color: 'bg-orange-500 hover:bg-orange-600'
-		}
+            title: 'About',
+            description: 'Learn more about our mission',
+            icon: '💡',
+            href: getRelativeLocaleUrl('en', 'about'),
+            color: 'bg-orange-500 hover:bg-orange-600'
+        }
 	],
-	getStarted: 'Mulai Sekarang',
-	explore: 'Jelajahi',
-	startJourney: 'Mulai Perjalanan Sehat Anda',
-	journeyDescription: 'Bergabunglah dengan ribuan orang yang telah mengubah hidup mereka dengan Emverst. Mulai hari ini dan rasakan perbedaannya.'
+    getStarted: 'Get Started',
+	explore: 'Explore',
+	startJourney: 'Start Your Wellness Journey',
+	journeyDescription: 'Join thousands who have transformed their lives with Emverst. Start today and feel the difference.'
 };
+
 ---
 
 <Layout title={content.title} lang={currentLocale}>
@@ -106,7 +107,7 @@ const content = {
 					{content.journeyDescription}
 				</p>
 				<a 
-					href={getRelativeLocaleUrl('id', 'eat')}
+					href={getRelativeLocaleUrl('en', 'eat')}
 					class="inline-block bg-emerald-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-emerald-700 transition-colors duration-200"
 				>
 					{content.getStarted}

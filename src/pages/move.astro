@@ -1,0 +1,73 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Layout from '../layouts/Layout.astro';
+
+const currentLocale = Astro.currentLocale || 'id';
+
+const content = {
+	title: 'Bergerak',
+	subtitle: 'Tetap Aktif dengan Latihan Terpandu',
+	description: 'Temukan latihan dan praktik gerakan untuk menjaga tubuh Anda tetap kuat dan sehat.',
+	comingSoon: 'Segera Hadir',
+	placeholder: 'Kami sedang bekerja keras untuk menghadirkan konten gerakan dan latihan yang menakjubkan. Periksa kembali segera!',
+	features: [
+		'Rutinitas latihan untuk semua tingkat kebugaran',
+		'Panduan yoga dan peregangan',
+		'Latihan kardio dan kekuatan',
+		'Alat pelacakan gerakan'
+	]
+};
+---
+
+<Layout title={content.title} lang={currentLocale}>
+	<div class="min-h-screen bg-gray-50">
+		<!-- Header Section -->
+		<section class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-16">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="text-center">
+					<h1 class="text-4xl md:text-5xl font-bold mb-4">
+						{content.title}
+					</h1>
+					<p class="text-xl md:text-2xl text-blue-100 mb-6 max-w-3xl mx-auto">
+						{content.subtitle}
+					</p>
+					<p class="text-lg text-blue-200 max-w-2xl mx-auto">
+						{content.description}
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Coming Soon Section -->
+		<section class="py-20">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+				<div class="max-w-3xl mx-auto">
+					<div class="text-8xl mb-8">🏃‍♀️</div>
+					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+						{content.comingSoon}
+					</h2>
+					<p class="text-lg text-gray-600 mb-12">
+						{content.placeholder}
+					</p>
+					
+					<!-- Features Preview -->
+					<div class="bg-white rounded-lg shadow-lg p-8">
+						<h3 class="text-xl font-semibold text-gray-900 mb-6">
+							Yang Akan Datang:
+						</h3>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+							{content.features.map((feature) => (
+								<div class="flex items-center text-left">
+									<svg class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+									</svg>
+									<span class="text-gray-700">{feature}</span>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</Layout>

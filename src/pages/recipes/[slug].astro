@@ -1,0 +1,178 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const recipes = await getCollection('recipes', (entry) => entry.data.lang === 'id');
+	return recipes.map((recipe) => ({
+		params: { slug: recipe.id },
+		props: { recipe },
+	}));
+}
+
+interface Props {
+	recipe: CollectionEntry<'recipes'>;
+}
+
+const { recipe } = Astro.props as Props;
+const { Content } = await recipe.render();
+const currentLocale = 'id';
+
+const content = {
+	en: {
+		backToRecipes: 'Back to Recipes',
+		ingredients: 'Ingredients',
+		instructions: 'Instructions',
+		difficulty: 'Difficulty',
+		prepTime: 'Prep Time',
+		cookTime: 'Cook Time',
+		servings: 'Servings',
+		difficultyLabels: { easy: 'Easy', medium: 'Medium', hard: 'Hard' }
+	},
+	id: {
+		backToRecipes: 'Kembali ke Resep',
+		ingredients: 'Bahan-bahan',
+		instructions: 'Cara Membuat',
+		difficulty: 'Tingkat Kesulitan',
+		prepTime: 'Waktu Persiapan',
+		cookTime: 'Waktu Memasak',
+		servings: 'Porsi',
+		difficultyLabels: { easy: 'Mudah', medium: 'Sedang', hard: 'Sulit' }
+	}
+};
+
+const labels = content[currentLocale as keyof typeof content] || content.en;
+---
+
+<Layout title={recipe.data.title} lang={currentLocale}>
+	<div class="min-h-screen bg-gray-50">
+		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+			<!-- Back Link -->
+			<div class="mb-6">
+				<a 
+					href={getRelativeLocaleUrl(currentLocale, 'eat')}
+					class="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium"
+				>
+					<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+					</svg>
+					{labels.backToRecipes}
+				</a>
+			</div>
+
+			<!-- Recipe Header -->
+			<div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+				<div class="relative">
+					<img 
+						src={recipe.data.image} 
+						alt={recipe.data.title}
+						class="w-full h-64 sm:h-80 object-cover"
+					/>
+					<div class="absolute inset-0 bg-black bg-opacity-40 flex items-end">
+						<div class="p-6 text-white">
+							<h1 class="text-3xl sm:text-4xl font-bold mb-2">{recipe.data.title}</h1>
+							<p class="text-lg text-gray-200">{recipe.data.description}</p>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Recipe Meta -->
+				<div class="p-6 bg-gray-50 border-t">
+					<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+						<div>
+							<div class="text-sm text-gray-600">{labels.difficulty}</div>
+							<div class="font-semibold text-emerald-600">
+								{labels.difficultyLabels[recipe.data.difficulty]}
+							</div>
+						</div>
+						<div>
+							<div class="text-sm text-gray-600">{labels.prepTime}</div>
+							<div class="font-semibold">{recipe.data.prepTime}</div>
+						</div>
+						<div>
+							<div class="text-sm text-gray-600">{labels.cookTime}</div>
+							<div class="font-semibold">{recipe.data.cookTime}</div>
+						</div>
+						<div>
+							<div class="text-sm text-gray-600">{labels.servings}</div>
+							<div class="font-semibold">{recipe.data.servings}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Tags -->
+			<div class="mb-8">
+				<div class="flex flex-wrap gap-2">
+					{recipe.data.tags.map((tag) => (
+						<span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full font-medium">
+							{tag}
+						</span>
+					))}
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+				<!-- Ingredients -->
+				<div class="lg:col-span-1">
+					<div class="bg-white rounded-lg shadow-md p-6 sticky top-8">
+						<h2 class="text-xl font-bold text-gray-900 mb-4">{labels.ingredients}</h2>
+						<ul class="space-y-2">
+							{recipe.data.ingredients.map((ingredient) => (
+								<li class="flex items-start">
+									<span class="w-2 h-2 bg-emerald-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+									<span class="text-gray-700">{ingredient}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+
+				<!-- Instructions -->
+				<div class="lg:col-span-2">
+					<div class="bg-white rounded-lg shadow-md p-6">
+						<h2 class="text-xl font-bold text-gray-900 mb-6">{labels.instructions}</h2>
+						<div class="prose prose-emerald max-w-none">
+							<Content />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.prose h1 {
+		@apply text-2xl font-bold text-gray-900 mb-4;
+	}
+	
+	.prose h2 {
+		@apply text-xl font-semibold text-gray-800 mb-3 mt-6;
+	}
+	
+	.prose h3 {
+		@apply text-lg font-semibold text-gray-800 mb-2 mt-4;
+	}
+	
+	.prose p {
+		@apply text-gray-700 mb-4 leading-relaxed;
+	}
+	
+	.prose ol {
+		@apply list-decimal list-inside space-y-2 mb-4;
+	}
+	
+	.prose ul {
+		@apply list-disc list-inside space-y-2 mb-4;
+	}
+	
+	.prose li {
+		@apply text-gray-700;
+	}
+	
+	.prose strong {
+		@apply font-semibold text-gray-900;
+	}
+</style>

@@ -1,22 +1,77 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+export interface Props {
+	title: string;
+	lang?: string;
+}
+
+const { title, lang = 'id' } = Astro.props;
+const currentLocale = Astro.currentLocale || lang;
+
+const navigationItems = {
+	id: [
+		{ href: getRelativeLocaleUrl('id', '/'), label: 'Beranda' },
+		{ href: getRelativeLocaleUrl('id', 'eat'), label: 'Makan' },
+		{ href: getRelativeLocaleUrl('id', 'move'), label: 'Bergerak' },
+		{ href: getRelativeLocaleUrl('id', 'rest'), label: 'Istirahat' },
+		{ href: getRelativeLocaleUrl('id', 'about'), label: 'Tentang' }
+	],
+	en: [
+		{ href: getRelativeLocaleUrl('en', '/'), label: 'Home' },
+		{ href: getRelativeLocaleUrl('en', 'eat'), label: 'Eat' },
+		{ href: getRelativeLocaleUrl('en', 'move'), label: 'Move' },
+		{ href: getRelativeLocaleUrl('en', 'rest'), label: 'Rest' },
+		{ href: getRelativeLocaleUrl('en', 'about'), label: 'About' }
+	]
+};
+
+const nav = navigationItems[currentLocale as keyof typeof navigationItems] || navigationItems.id;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title} - Emverst</title>
 	</head>
-	<body>
-		<slot />
+	<body class="min-h-screen bg-gray-50">
+		<header class="bg-white shadow-sm border-b">
+			<nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between items-center h-16">
+					<div class="flex items-center">
+						<a href={getRelativeLocaleUrl(currentLocale, '/')} class="text-2xl font-bold text-emerald-600">Emverst</a>
+					</div>
+					<div class="hidden md:flex space-x-8">
+						{nav.map((item) => (
+							<a 
+								href={item.href}
+								class="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+							>
+								{item.label}
+							</a>
+						))}
+					</div>
+					<div class="flex items-center space-x-4">
+						<a href={getRelativeLocaleUrl('id', '/')} class="text-sm text-gray-600 hover:text-emerald-600">ID</a>
+						<span class="text-gray-400">|</span>
+						<a href={getRelativeLocaleUrl('en', '/')} class="text-sm text-gray-600 hover:text-emerald-600">EN</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+		
+		<main class="flex-1">
+			<slot />
+		</main>
+		
+		<footer class="bg-gray-800 text-white py-8 mt-16">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+				<p>&copy; 2025 Emverst. {currentLocale === 'id' ? 'Semua hak dilindungi.' : 'All rights reserved.'}</p>
+			</div>
+		</footer>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
