@@ -18,6 +18,10 @@ ingredients: [
   "Crackers as needed",
   "Ground spices: 3 red chilies, 2 garlic cloves, 1 tsp shrimp paste"
 ]
+nutrition:
+  carbs: 35
+  protein: 18
+  fat: 22
 lang: "en"
 ---
 

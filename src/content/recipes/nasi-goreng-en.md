@@ -17,6 +17,10 @@ ingredients: [
   "Salt to taste",
   "Cooking oil"
 ]
+nutrition:
+  carbs: 65
+  protein: 12
+  fat: 15
 lang: "en"
 ---
 

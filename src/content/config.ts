@@ -13,6 +13,11 @@ const recipesCollection = defineCollection({
     servings: z.number(),
     ingredients: z.array(z.string()),
     lang: z.enum(['en', 'id']).default('en'),
+    nutrition: z.object({
+      carbs: z.number(),
+      protein: z.number(),
+      fat: z.number(),
+    }),
   })
 });
 

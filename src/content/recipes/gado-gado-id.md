@@ -18,6 +18,10 @@ ingredients: [
   "Kerupuk secukupnya",
   "Bumbu halus: 3 cabai merah, 2 siung bawang putih, 1 sdt terasi"
 ]
+nutrition:
+  carbs: 35
+  protein: 18
+  fat: 22
 lang: "id"
 ---
 

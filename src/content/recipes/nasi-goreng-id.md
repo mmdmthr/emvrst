@@ -17,6 +17,10 @@ ingredients: [
   "Garam secukupnya",
   "Minyak goreng"
 ]
+nutrition:
+  carbs: 65
+  protein: 12
+  fat: 15
 lang: "id"
 ---
 
