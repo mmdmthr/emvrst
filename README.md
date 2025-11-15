@@ -1,32 +1,27 @@
-# Astro Starter Kit: Basics
+# Emverst - My Wellness Journey
 
-```sh
-npm create astro@latest -- --template basics
-```
+## 💭 Why I Built This
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+I created Emverst to document and share my personal journey toward a healthier lifestyle. This app is a collection of my habits, experiences, and learnings across three essential pillars of wellness:
 
-## 🚀 Project Structure
+- **🍽️ Eat**: The healthy recipes I cook and enjoy
+- **🏃‍♀️ Move**: My exercise routines and physical activities
+- **🧘‍♀️ Rest**: Recovery techniques and rest practices that work for me
 
-Inside of your Astro project, you'll see the following folders and files:
+While this is primarily for my personal use to track and organize my wellness habits, I'm sharing it openly in hopes that it might inspire or help others on their own wellness journey.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## 🌟 What's Inside
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- **Recipe Collection**: Real recipes I've tried, tested, and loved - from traditional Indonesian dishes to healthy everyday meals
+- **Exercise Documentation**: Movement practices and exercises that keep me active
+- **Rest & Recovery**: Relaxation techniques and recovery methods I practice
+- **Bilingual**: Available in Indonesian (my native language) and English to share with a wider audience
+
+## 🌍 Languages
+
+Available in Indonesian (default) and English:
+- **Indonesian**: `http://localhost:4321/`
+- **English**: `http://localhost:4321/en/`
 
 ## 🧞 Commands
 
@@ -41,6 +36,6 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+*Built with Astro and Tailwind CSS. Feel free to explore and get inspired for your own wellness journey!*
