@@ -22,6 +22,7 @@ nutrition:
   carbs: 35
   protein: 18
   fat: 22
+  calories: 410
 lang: "en"
 ---
 

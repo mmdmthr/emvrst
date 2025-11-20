@@ -1,5 +1,5 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 export interface Props {
 	recipe: {
@@ -9,7 +9,7 @@ export interface Props {
 			description: string;
 			image: string;
 			tags: string[];
-			difficulty: 'easy' | 'medium' | 'hard';
+			difficulty: "easy" | "medium" | "hard";
 			prepTime: string;
 			cookTime: string;
 			servings: number;
@@ -17,92 +17,125 @@ export interface Props {
 				carbs: number;
 				protein: number;
 				fat: number;
+				calories: number;
 			};
 		};
 	};
 	lang?: string;
 }
 
-const { recipe, lang = 'en' } = Astro.props;
+const { recipe, lang = "en" } = Astro.props;
 
 const difficultyLabels = {
-	en: { easy: 'Easy', medium: 'Medium', hard: 'Hard' },
-	id: { easy: 'Mudah', medium: 'Sedang', hard: 'Sulit' }
+	en: { easy: "Easy", medium: "Medium", hard: "Hard" },
+	id: { easy: "Mudah", medium: "Sedang", hard: "Sulit" },
 };
 
 const difficultyColors = {
-	easy: 'bg-green-100 text-green-800',
-	medium: 'bg-yellow-100 text-yellow-800',
-	hard: 'bg-red-100 text-red-800'
+	easy: "bg-green-100 text-green-800",
+	medium: "bg-yellow-100 text-yellow-800",
+	hard: "bg-red-100 text-red-800",
 };
 
-const labels = difficultyLabels[lang as keyof typeof difficultyLabels] || difficultyLabels.en;
+const labels =
+	difficultyLabels[lang as keyof typeof difficultyLabels] ||
+	difficultyLabels.en;
 ---
 
-<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+<div
+	class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+>
 	<div class="relative">
-		<img 
-			src={recipe.data.image} 
+		<img
+			src={recipe.data.image}
 			alt={recipe.data.title}
 			class="w-full h-48 object-cover"
 			loading="lazy"
 		/>
 		<div class="absolute top-2 right-2">
-			<span class={`px-2 py-1 rounded-full text-xs font-medium ${difficultyColors[recipe.data.difficulty]}`}>
+			<span
+				class={`px-2 py-1 rounded-full text-xs font-medium ${difficultyColors[recipe.data.difficulty]}`}
+			>
 				{labels[recipe.data.difficulty]}
 			</span>
 		</div>
 	</div>
-	
+
 	<div class="p-4">
 		<h3 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
 			{recipe.data.title}
 		</h3>
-		
+
 		<p class="text-gray-600 text-sm mb-3 line-clamp-2">
 			{recipe.data.description}
 		</p>
-		
+
 		<div class="flex items-center text-xs text-gray-500 mb-3 space-x-4">
 			<span>⏱️ {recipe.data.prepTime}</span>
-			<span>🍽️ {recipe.data.servings} {lang === 'id' ? 'porsi' : 'servings'}</span>
+			<span
+				>🍽️ {recipe.data.servings}
+				{lang === "id" ? "porsi" : "servings"}</span
+			>
 		</div>
-		
+
 		<!-- Macro Nutrients -->
 		<div class="bg-gray-50 rounded-lg p-3 mb-3">
 			<div class="flex items-center justify-between text-xs">
 				<div class="text-center flex-1">
-					<div class="text-blue-600 font-semibold text-sm">{recipe.data.nutrition.carbs}g</div>
-					<div class="text-gray-600 mt-0.5">{lang === 'id' ? 'Karbo' : 'Carbs'}</div>
+					<div class="text-blue-600 font-semibold text-sm">
+						{recipe.data.nutrition.carbs}g
+					</div>
+					<div class="text-gray-600 mt-0.5">
+						{lang === "id" ? "Karbo" : "Carbs"}
+					</div>
 				</div>
 				<div class="w-px h-8 bg-gray-300"></div>
 				<div class="text-center flex-1">
-					<div class="text-red-600 font-semibold text-sm">{recipe.data.nutrition.protein}g</div>
-					<div class="text-gray-600 mt-0.5">{lang === 'id' ? 'Protein' : 'Protein'}</div>
+					<div class="text-red-600 font-semibold text-sm">
+						{recipe.data.nutrition.protein}g
+					</div>
+					<div class="text-gray-600 mt-0.5">
+						{lang === "id" ? "Protein" : "Protein"}
+					</div>
 				</div>
 				<div class="w-px h-8 bg-gray-300"></div>
 				<div class="text-center flex-1">
-					<div class="text-yellow-600 font-semibold text-sm">{recipe.data.nutrition.fat}g</div>
-					<div class="text-gray-600 mt-0.5">{lang === 'id' ? 'Lemak' : 'Fat'}</div>
+					<div class="text-yellow-600 font-semibold text-sm">
+						{recipe.data.nutrition.fat}g
+					</div>
+					<div class="text-gray-600 mt-0.5">
+						{lang === "id" ? "Lemak" : "Fat"}
+					</div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="flex flex-wrap gap-1 mb-4">
-			{recipe.data.tags.map((tag) => (
+		<div class="mt-2 pt-2 border-t border-gray-200 text-center">
+			<span
+				class="text-xs font-medium text-gray-500 uppercase tracking-wider"
+				>{lang === "id" ? "Kalori / Porsi" : "Calories / Serving"}</span
+			>
+			<span class="ml-1 text-sm font-bold text-gray-900"
+				>{recipe.data.nutrition.calories}</span
+			>
+		</div>
+	</div>
+
+	<div class="flex flex-wrap gap-1 mb-4">
+		{
+			recipe.data.tags.map((tag) => (
 				<span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
 					{tag}
 				</span>
-			))}
-		</div>
-		
-		<a 
-			href={getRelativeLocaleUrl(lang, `recipes/${recipe.id}`)}
-			class="block w-full bg-emerald-600 text-white text-center py-2 px-4 rounded-md hover:bg-emerald-700 transition-colors duration-200 text-sm font-medium"
-		>
-			{lang === 'id' ? 'Lihat Resep' : 'View Recipe'}
-		</a>
+			))
+		}
 	</div>
+
+	<a
+		href={getRelativeLocaleUrl(lang, `recipes/${recipe.id}`)}
+		class="block w-full bg-emerald-600 text-white text-center py-2 px-4 rounded-md hover:bg-emerald-700 transition-colors duration-200 text-sm font-medium"
+	>
+		{lang === "id" ? "Lihat Resep" : "View Recipe"}
+	</a>
 </div>
 
 <style>

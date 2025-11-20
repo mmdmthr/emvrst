@@ -17,6 +17,7 @@ const recipesCollection = defineCollection({
       carbs: z.number(),
       protein: z.number(),
       fat: z.number(),
+      calories: z.number(),
     }),
   })
 });
