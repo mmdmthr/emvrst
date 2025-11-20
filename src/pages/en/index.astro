@@ -6,26 +6,26 @@ const currentLocale = Astro.currentLocale || 'en';
 
 const content = {
 	title: 'Welcome to Emverst',
-	subtitle: 'Your guide to healthy living through mindful eating, movement, and rest',
-	description: 'Discover recipes, exercises, and wellness tips to transform your lifestyle.',
+	subtitle: "My journey towards a healthier life through mindful eating, movement, and rest.",
+	description: "Here I share recipes I've tried, workouts I do, and how I take care of myself.",
 	sections: [
 		{
             title: 'Eat',
-            description: 'Discover healthy and delicious recipes',
+            description: "Recipes I've tried & loved",
             icon: '🍽️',
             href: getRelativeLocaleUrl('en', 'eat'),
             color: 'bg-green-500 hover:bg-green-600'
         },
 		{
             title: 'Move',
-            description: 'Stay active with guided exercises',
+            description: 'My daily exercise routines',
             icon: '🏃‍♀️',
             href: getRelativeLocaleUrl('en', 'move'),
             color: 'bg-blue-500 hover:bg-blue-600'
         },
 		{
             title: 'Rest',
-            description: 'Learn relaxation and recovery techniques',
+            description: 'How I take care of myself & recover',
             icon: '🧘‍♀️',
             href: getRelativeLocaleUrl('en', 'rest'),
             color: 'bg-purple-500 hover:bg-purple-600'
@@ -38,10 +38,10 @@ const content = {
             color: 'bg-orange-500 hover:bg-orange-600'
         }
 	],
-    getStarted: 'Get Started',
-	explore: 'Explore',
-	startJourney: 'Let\'s Start Our Wellness Journey Together',
-	journeyDescription: 'I\'m sharing my habits and experiences hoping to inspire you to start your own wellness journey. Every small step counts.'
+    getStarted: 'Start Exploring',
+	explore: 'View',
+	startJourney: "Let's Start Our Wellness Journey Together",
+	journeyDescription: "I'm sharing my habits and experiences hoping to inspire you to start your own wellness journey. Every small step counts."
 };
 
 ---
